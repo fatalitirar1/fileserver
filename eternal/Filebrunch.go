@@ -22,15 +22,11 @@ func (fb FileBrunch) GetTotalSize() int64 {
 	var size int64
 	for _, brunch := range fb.ChildBrunchs {
 		size += brunch.Curentfilesize
-		if len(brunch.ChildBrunchs) > 0 {
-			size += brunch.GetTotalSize()
-		}
 	}
 	return size
 }
 
 func (fb FileBrunch) String() string {
-	//fb.GetTotalSize()
 	size, debth := fb.GetDepthAndSize(fb.Curentfilesize)
 	return fmt.Sprint(string(fb.Path), ": ", size, " ", debth, "Real size: ", fb.Curentfilesize)
 }
